@@ -9,19 +9,15 @@ class Splash
 
     #function called to begin the game of blackjack
     def start_game
-        #present the splash image
-        @splashImage = @shoes.image(    "blackjack_splash.png",
-                                        left: 150,
-                                        top:  300 )
-
-        #present the start button and title
-        @stack = @shoes.stack(margin: 50) do
-            @prompt = @shoes.title( "Blackjack", stroke: "#FFF" )
-            @author = @shoes.para(  "By: Thomas Tracy", stroke: "#FFF")
-            @startButton = @shoes.button ("Start")
+        #present the start button and title and image
+        @stack = @shoes.stack(margin_left:"50%", left: "-25%") do
+            @prompt = @shoes.title( "Blackjack", stroke: "#FFF", align: "center" )
+            @author = @shoes.para(  "By: Thomas Tracy", stroke: "#FFF", align: "center")
+            @toBegin = @shoes.title( "Click the cards to begin!", stroke: "#FFF", align: "center")
+            @splashImage = @shoes.image(    "blackjack_splash.png", top: 250, left: 100)
 
             #once the start button is clicked, remove the splash and start the game
-            @startButton.click do
+            @splashImage.click do
 
                 #remove splash
                 @stack.remove
@@ -29,7 +25,7 @@ class Splash
 
                 #create the game view
                 newGame = GameView.new(@shoes)
-                newGame.create_view
+                newGame.create_gameView
 
             end #end click
         end #end stack

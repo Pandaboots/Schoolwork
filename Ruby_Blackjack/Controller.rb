@@ -1,14 +1,16 @@
 class GameController
 
-    def initialize(shoes)
+    #create a deck for this game
+    def initialize()
         @deck = Deck.new
-        @shoes = shoes
     end
 
-    def display_card(index)
-
+    #draw a card off the top of the deck at a certain place
+        #param: index - the place in the array of cards you would like
+        #draw from
+        #returns: the card drawn
+    def draw_card_index(index)
         x = @deck.get_card_at_index(index)
-        @shoes.image("Cards/#{x.get_name}.png", width: "20%", height: "22%")
     end
 
 end

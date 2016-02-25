@@ -15,9 +15,9 @@ class Deck
         end
     end
 
-    #accessor to the card list 
+    #accessor to the card using the list
     def get_card_at_index(index)
-        @cardList[index]
+        x = @cardList[index]
     end
 
 end

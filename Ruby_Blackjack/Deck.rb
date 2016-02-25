@@ -7,7 +7,7 @@ require 'Controller.rb'
 
 
 #"Main" of the application. starts an istance of shoes to play the game in.
-Shoes.app(title: "Blackjack", width: 600, height: 800) do
+Shoes.app(title: "Blackjack", width: 1024, height: 768) do
     #set the background to that felty green color
     background "#070"
 
