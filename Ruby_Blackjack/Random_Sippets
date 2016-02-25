@@ -1,0 +1,17 @@
+SHOWING A CARD AND THE DELETING IT AND REPLACING IT
+---
+
+
+#show the back of the card as a placeholder
+@cardImage = @shoes.image(  "Card_Back.png",
+                            width: $CARD_WIDTH,
+                            height: $CARD_HEIGHT)
+
+#when a card is grabbed, delete the old one, and replace it
+@OKButton.click do
+    @cardImage.remove
+    newCard = @controller.draw_card_index(@inputLine.text.to_i)
+    @cardImage = @shoes.image(   "Cards/#{newCard.get_name}.png",
+                                 width:  $CARD_WIDTH,
+                                 height: $CARD_HEIGHT)
+end
