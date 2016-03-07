@@ -1,4 +1,9 @@
-
+#ratio for card display widths
+$CARD_WIDTH = "14%"
+#ratio for card display heights
+$CARD_HEIGHT = "21%"
+#color for text
+$WHITE = "#FFF"
 
 #class to handle the starting of a game of blackjack.
 class Splash
@@ -10,18 +15,24 @@ class Splash
     #function called to begin the game of blackjack
     def start_game
         #present the start button and title and image
-        @stack = @shoes.stack(margin_left:"50%", left: "-25%") do
-            @prompt = @shoes.title( "Blackjack", stroke: "#FFF", align: "center" )
-            @author = @shoes.para(  "By: Thomas Tracy", stroke: "#FFF", align: "center")
-            @toBegin = @shoes.title( "Click the cards to begin!", stroke: "#FFF", align: "center")
-            @splashImage = @shoes.image(    "blackjack_splash.png", top: 250, left: 100)
+        @stack = @shoes.stack left: 200 do
+            @prompt = @shoes.title( "Blackjack",
+                                    stroke: $WHITE,
+                                    align: "center")
+            @author = @shoes.para(  "By: Thomas Tracy",
+                                    stroke: $WHITE,
+                                    align: "center")
+            @toBegin = @shoes.title(    "Click the cards to begin!",
+                                        stroke: $WHITE,
+                                        align: "center")
+            @splashImage = @shoes.image("blackjack_splash.png").move( 350, 250)
 
             #once the start button is clicked, remove the splash and start the game
             @splashImage.click do
 
                 #remove splash
-                @stack.remove
-                @splashImage.remove
+                @stack.clear
+                @splashImage.clear
 
                 #create the game view
                 newGame = GameView.new(@shoes)

@@ -1,10 +1,13 @@
+#global variable holding the filename for the list of card names
+$CARD_LIST_FILE = "CardList.txt"
+
 #class that generates a deck of 52 cards and stores them into an array
 class Deck
 
     def initialize
-        @cardList = []
+        @cardList = Array.new
         #open the file with the cards
-        file = File.new("CardList.txt", "r")
+        file = File.new($CARD_LIST_FILE, "r")
         #get the next picture in the list and chomp the ending /n
         #grab the value of the card
         x = 0
@@ -18,6 +21,16 @@ class Deck
     #accessor to the card using the list
     def get_card_at_index(index)
         x = @cardList[index]
+    end
+
+    #shuffle the deck using .shuffle
+    def shuffle_list
+        @cardList.shuffle!
+    end
+
+    #pops a card off the top of the deck
+    def pop_card_top
+        @cardList.pop
     end
 
 end
@@ -37,7 +50,7 @@ class Card
 
     #returns the value of the card
     def get_value
-        @value
+        @value.to_i
     end
 
 end
