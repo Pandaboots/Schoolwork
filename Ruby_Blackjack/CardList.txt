@@ -71,13 +71,13 @@
 9_of_spades
 9
 ace_of_clubs
-11
+0
 ace_of_diamonds
-11
+0
 ace_of_hearts
-11
+0
 ace_of_spades
-11
+0
 jack_of_clubs
 10
 jack_of_diamonds
