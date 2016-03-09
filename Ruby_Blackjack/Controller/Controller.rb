@@ -28,10 +28,11 @@ class GameController
         hand.add_hand(x)
     end
 
-
-
-
 end
+
+
+
+
 
 class Hand
 
@@ -92,6 +93,41 @@ class Hand
     def get_hand_size
         @hand.size
     end
-    
+
+    #very simple AI to handle the dealers hand to know to hit or not
+    def handle_dealer(game)
+        # => if they have an ace, add 11
+        while(@ace > 0)
+            @score += 11
+            @ace -= 1
+            #if they are above 21, subtract 11 and add 1
+            if(@score > 21)
+                @score -= 10
+            end
+        end
+        # => if its less then 17 hit
+        while(@score <= 17)
+            game.draw_card(self)
+            # => if they have an ace, add 11
+            while(@ace > 0)
+                @score += 11
+                @ace -= 1
+                #if they are above 21, subtract 11 and add 1
+                if(@score > 21)
+                    @score -= 10
+                end
+            end
+        end
+
+        #return the score
+        if(@score > 21)
+            x = -1
+        elsif(@score == 21)
+            x = 0
+        else
+            x = @score
+        end
+
+    end
 
 end
