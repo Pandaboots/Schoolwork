@@ -1,9 +1,3 @@
-#ratio for card display widths
-$CARD_WIDTH = "14%"
-#ratio for card display heights
-$CARD_HEIGHT = "21%"
-#color for text
-$WHITE = "#FFF"
 
 #class to handle the starting of a game of blackjack.
 class Splash
@@ -25,19 +19,16 @@ class Splash
             @toBegin = @shoes.title(    "Click the cards to begin!",
                                         stroke: $WHITE,
                                         align: "center")
-            @splashImage = @shoes.image("blackjack_splash.png").move( 350, 250)
+            @splashImage = @shoes.image("View_application/blackjack_splash.png").move( 350, 250)
 
             #once the start button is clicked, remove the splash and start the game
             @splashImage.click do
-
                 #remove splash
                 @stack.clear
                 @splashImage.clear
-
                 #create the game view
                 newGame = GameView.new(@shoes)
                 newGame.create_gameView
-
             end #end click
         end #end stack
     end #end start_game
