@@ -15,3 +15,34 @@ SHOWING A CARD AND THE DELETING IT AND REPLACING IT
                                  width:  $CARD_WIDTH,
                                  height: $CARD_HEIGHT)
 end
+
+
+
+def create_namePrompt
+
+    #choosing a name stack
+    @shoes.stack do
+        @namePrompt = @shoes.para("Please enter your name: ")
+        @inputLine = @shoes.edit_line
+        @OKButton = @shoes.button("OK")
+    end
+
+    #remove the name entry form returning the name into playerName
+    @OKButton.click do
+        @playerName = @inputLine.text
+        @nameStack.clear
+        self.create_playerSpace
+    end# @OKButton.click
+end# game_view
+
+
+
+#flow holding the horizontal space for computer player cards
+@compFlow = @shoes.flow(height: 150) do
+    #stack holding relevant information about the dealer
+    @compInfo = @shoes.stack do
+        @shoes.para("Computer Player: ")
+        @compScore = @shoes.para("??")
+        @compWins = @shoes.para("Wins:")
+    end# compInfo
+end# compFlow
