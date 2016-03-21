@@ -1,3 +1,11 @@
+#####################################################
+# => MODEL_CREATEDECK.RB
+# => Created by: Thomas Tracy
+# => This file sets up the data structures for the
+#    the deck and cards.
+# => Created on: Feb 10, 2016
+#####################################################
+
 #global variable holding the filename for the list of card names
 $CARD_LIST_FILE = "CardList.txt"
 

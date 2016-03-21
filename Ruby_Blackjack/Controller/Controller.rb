@@ -1,6 +1,18 @@
+#####################################################
+# => CONTROLLER.RB
+# => Created by: Thomas Tracy
+# => Purpose of this file is to act as a middle man
+#    between the model and the view of the game. this
+#    is where the rules for the ai of the dealer and the
+#    ai are defined. as well as the hands of the players.
+# => Created on: Feb 10, 2016
+#####################################################
 
+
+
+#GAMECONTROLLER
+#simple class to hold the deck, shuffle the deck, pass out cards, etc.
 class GameController
-
     #create a deck for this game
     def initialize()
         @deck = Deck.new
@@ -28,13 +40,15 @@ class GameController
         #add it to the hand
         hand.add_hand(x)
     end
-
 end
 
 
 
 
-
+#HAND
+#class used to hold the data of each card in a players hand. sort of generic,
+#uses a function to handle the dealer AI, but I use the same class for the
+#player as well.
 class Hand
 
     def initialize()

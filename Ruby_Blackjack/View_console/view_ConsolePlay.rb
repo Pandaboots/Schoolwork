@@ -1,23 +1,12 @@
-#handle aces in the console view
-def handle_ace(hand)
-    while(hand.get_ace_count.to_i > 0)
-        print "\nYou got an ace! is it worth 1 or 11? "
-        aceScore = (gets.chomp).to_i
-        hand.set_ace_score(aceScore)
-    end
-end
-
-
-
-#displays all cards in a given hand to the console
-def display_hand(hand)
-    i = 0
-    while(i < hand.get_hand_size)
-        print "[#{hand.get_hand_name(i)}] "
-        i += 1
-    end
-
-end
+#####################################################
+# => MODEL_CREATEDECK.RB
+# => Created by: Thomas Tracy
+# => This is the file that handles the view for the
+#    console version of the game. It uses the
+#    controller file for the rules and the model for
+#    the data in the deck.
+# => Created on: Feb 10, 2016
+#####################################################
 
 
 
@@ -33,8 +22,6 @@ def start_game
     dealer = Hand.new
     player = Hand.new
     game.shuffle_deck
-
-    #main game loop
 
         #draw the starting hands
         game.draw_card(dealer)
@@ -110,7 +97,7 @@ def start_game
 
 end
 
-
+#controls what happens if the player hits
 def player_hit(player, game)
 
         print "\n---   you hit!   ---"
@@ -122,5 +109,27 @@ def player_hit(player, game)
         display_hand(player)
         print "\n"
         print "New score: #{player.get_hand_score} \n"
+
+end
+
+
+#handle aces in the console view
+def handle_ace(hand)
+    while(hand.get_ace_count.to_i > 0)
+        print "\nYou got an ace! is it worth 1 or 11? "
+        aceScore = (gets.chomp).to_i
+        hand.set_ace_score(aceScore)
+    end
+end
+
+
+
+#displays all cards in a given hand to the console
+def display_hand(hand)
+    i = 0
+    while(i < hand.get_hand_size)
+        print "[#{hand.get_hand_name(i)}] "
+        i += 1
+    end
 
 end
