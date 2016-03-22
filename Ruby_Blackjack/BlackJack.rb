@@ -14,5 +14,5 @@ require_relative 'Model/Model_createDeck'
 Shoes.app title: "Blackjack!", width: 1024, height: 768 do
     background "#070"
     newGame = GameView.new(self)
-    newGame.create_gameView
+    newGame.create_playerSpace
 end

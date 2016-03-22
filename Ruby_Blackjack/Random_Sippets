@@ -46,3 +46,13 @@ end# game_view
         @compWins = @shoes.para("Wins:")
     end# compInfo
 end# compFlow
+
+
+case aceScore
+when "11"
+  hand.set_ace_score(11)
+when "1"
+  hand.set_ace_score(1)
+else
+  aceScore = @shoes.alert("Aces can't be worth that amount, try again.")
+end

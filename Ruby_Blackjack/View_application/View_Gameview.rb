@@ -36,10 +36,6 @@ class GameView
         @dealerHand = Hand.new
     end
 
-    def create_gameView
-        self.create_playerSpace
-    end
-
     #create the game view for the game to be played in
     def create_playerSpace
 
@@ -81,8 +77,8 @@ class GameView
         #make room for the control buttons for the player to use to play the game
         @controlFlow = @shoes.flow do
             @newGame = @shoes.button("New Game")
-            @hit = @shoes.button("Draw")
-            @stay = @shoes.button("stay")
+            @hit = @shoes.button(    "   Hit  ")
+            @stay = @shoes.button(   "  Stay  ")
             @hit.hide
             @stay.hide
         end# controlFlow
@@ -140,6 +136,9 @@ class GameView
       @cardflowPlayer.append do
         @cardArPlayer << @shoes.image("Cards/#{@playerHand.get_hand_name(0)}.png",width:  $CARD_WIDTH, height: $CARD_HEIGHT)
         @cardArPlayer << @shoes.image("Cards/#{@playerHand.get_hand_name(1)}.png",width:  $CARD_WIDTH, height: $CARD_HEIGHT)
+        if(@playerHand.get_ace_count > 0)
+          handle_ace(@playerHand)
+        end
       end
       #draw the images of one card and a card back to the dealers hand
       @cardflowDealer.append do
@@ -153,6 +152,7 @@ class GameView
         @playerScore = @shoes.para "#{@playerHand.get_hand_score}"
         @playerWins = @shoes.para "Wins: #{@playerWinsCount}"
       end
+
     end
 
     #handle redrawing the players side of the board
@@ -177,5 +177,63 @@ class GameView
         @stay.hide
       end
     end
+
+    def stay
+      @hit.hide
+      @stay.hide
+      #handle the dealer AI
+      dealerScore = @dealerHand.handle_dealer(@controller)
+      #show the dealers cards to the player
+      i = 0
+      @cardArDealer.each { |x| x.clear  }
+      while( i < @dealerHand.get_hand_size)
+        @cardflowDealer.append do
+          @cardArDealer << @shoes.image("Cards/#{@dealerHand.get_hand_name(i)}.png",width:  $CARD_WIDTH, height: $CARD_HEIGHT)
+        end
+        i += 1
+      end
+      #redraw the dealers score
+      @dealerScore.clear
+      @dealerInfo.after(@dealerName) do
+        @dealerScore = @shoes.para("#{@dealerHand.get_hand_score}")
+      end
+      #chose the winner
+      if(dealerScore > @playerHand.get_hand_score || dealerScore == 0)
+        #dealer wins hand
+        @winnerFlow.append do
+          @shoes.title "You Lose!", align: "center", stroke: "#FFF"
+          @dealerWinsCount += 1
+      end
+
+      else
+        #player wins hand
+        @winnerFlow.append do
+          @shoes.title "You Win!", align: "center", stroke: "#FFF"
+          @playerWinsCount += 1
+        end# append
+      end# if
+
+    end# stay
+
+
+    def handle_ace(hand)
+
+        Shoes.app width: 200, height: 200 do
+          background ("#070")
+          flow do
+          para "You got an Ace!" align: "center"
+          button('set the ace to 11'){
+            hand.set_ace_score(11)
+            close
+          }
+          button('set the ace to 1'){
+            hand.set_ace_score(1)
+            close
+          }
+        end
+      end
+
+    end
+
 
 end# GameView

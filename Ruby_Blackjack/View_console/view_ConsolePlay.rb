@@ -30,7 +30,6 @@ def start_game
         game.draw_card(player)
 
         #display the starting hands and scores
-
         print "Dealer hand: "
         display_hand(dealer)
         print "\n\n"
@@ -70,7 +69,7 @@ def start_game
         if (player.get_hand_score > 21)
             print "--- you bust this round, dealer wins. ---\n"
             #restart game
-            exit
+            exit 
         end
 
         #calculate what the dealer should do
